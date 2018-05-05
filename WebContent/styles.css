@@ -1,0 +1,7 @@
+@charset "ISO-8859-1";
+
+h1 { color : red; }
+body { font-family : verdana; font-size : 12pt;}
+h2 { color : blue;}
+
+.topics { color : green; font-weight : bold;}

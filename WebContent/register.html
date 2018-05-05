@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Registration </title>
+<script>
+ function validateForm() {
+	 var fullname = document.getElementById("fullname");
+	 if (fullname.value == "") {
+		   alert("Fullname is missing!")
+		   return false;
+     }
+	 
+	 var email = document.getElementById("email");
+	 if (email.value == "") {
+		   alert("Email is missing!")
+		   return false;
+     }
+	 return true;
+ }
+</script>
+</head>
+<body>
+<h1>Registration</h1>
+Please provide the following details :
+<p></p>
+
+<form action="register" onsubmit="return validateForm()">
+  Fullname <br/>
+  <input type="text" id="fullname" />
+  <p></p>
+  Email Address <br/>
+  <input type="text" id="email" />
+  <p></p>
+  <input type="Submit" value="Register" />
+  
+</form>
+
+</body>
+</html>
