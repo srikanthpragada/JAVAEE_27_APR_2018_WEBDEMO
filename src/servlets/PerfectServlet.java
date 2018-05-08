@@ -11,6 +11,11 @@ import javax.servlet.http.HttpServletResponse;
 
 @WebServlet("/perfect")
 public class PerfectServlet extends HttpServlet {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		doGet(request, response);
+	}
+
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		String input = request.getParameter("number");
