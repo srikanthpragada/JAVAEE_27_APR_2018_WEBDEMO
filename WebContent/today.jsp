@@ -7,11 +7,20 @@
 <title>Today</title>
 </head>
 <body>
-	<h2>
+    <%!
+      int v = 10; 
+    %>
+	<h1>
 		<%
+		    int v = 10; 
+		
+		    request.setAttribute("a1","Abc");
+		    session.setAttribute("a1","Abc");
+		    application.setAttribute("a1","Abc");
+		    
 			out.println(new java.util.Date().toString());
 		%>
-	</h2>
+	</h1>
 
 </body>
 </html>
