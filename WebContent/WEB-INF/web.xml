@@ -4,15 +4,12 @@
   <welcome-file-list>
     <welcome-file>index.html</welcome-file>
   </welcome-file-list>
-  
   <servlet>
     <servlet-name>TitleServlet</servlet-name>
     <servlet-class>servlets.TitleServlet</servlet-class>
   </servlet>
-  
   <servlet-mapping>
-     <servlet-name>TitleServlet</servlet-name>
-     <url-pattern>/title/*</url-pattern>
+    <servlet-name>TitleServlet</servlet-name>
+    <url-pattern>/title/*</url-pattern>
   </servlet-mapping>
-  
 </web-app>
