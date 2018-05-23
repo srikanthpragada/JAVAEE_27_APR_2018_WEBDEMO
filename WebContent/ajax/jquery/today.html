@@ -1,0 +1,17 @@
+<html>
+<script type="text/javascript" src="jquery-3.1.0.js"></script>
+<script>
+	function showToday() {
+		var now = new Date();
+		$("#today").html(now.toString());
+	}
+</script>
+<body>
+		<h2>jQuery Demo</h2>
+		<button ID="btnToday"
+		    onclick="showToday()">Show Date & Time</button>
+		<p />
+		<h2 id="today"></h2>
+
+</body>
+</html>
