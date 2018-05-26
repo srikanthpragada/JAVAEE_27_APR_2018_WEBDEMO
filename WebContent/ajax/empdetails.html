@@ -3,9 +3,9 @@
         <title>AJAX and XML </title>
         <script type ="text/javascript">
             var xhr;
-            function create() {
-                xhr = new XMLHttpRequest();
-            }
+         
+            xhr = new XMLHttpRequest();
+         
 
             function getEmployeeDetails() {
                 var empid = document.getElementById("empid");
@@ -42,13 +42,12 @@
             }
         </script>
     </head>
-    <body onload="create()">
-        <form id="form1">
+    <body>
             <h2>Employee Details</h2>
             <table>
                 <tr>
                     <td>Employee ID : </td>
-                    <td><input type="text" onblur="getEmployeeDetails()"
+                    <td><input type="text" 
                                id="empid" size="10"/>
                         <input type="button"
                                onclick="getEmployeeDetails()" 
@@ -63,6 +62,6 @@
                     <td><input type="text" id="empsal" readonly size="30"/></td>
                 </tr>
             </table>
-        </form>
+       
     </body>
 </html>

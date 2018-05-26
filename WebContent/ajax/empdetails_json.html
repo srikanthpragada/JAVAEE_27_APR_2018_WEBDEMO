@@ -3,10 +3,9 @@
         <title>AJAX and JSON </title>
         <script type ="text/javascript">
             var xmlHttp;
-            function create(){
-               xmlHttp = new XMLHttpRequest();
-            } // end of create
-
+           
+            xmlHttp = new XMLHttpRequest();
+           
             function getEmployeeDetails() {
                 empid = document.getElementById("empid").value;
                 url="empdetails_json.jsp?empid=" + empid;
@@ -39,8 +38,7 @@
             }
         </script>
     </head>
-    <body onload="create()">
-        <form id="form1">
+    <body>
             <h2>Employee Details</h2>
             <table>
                 <tr>
@@ -48,7 +46,8 @@
                     <td><input type="text" id="empid" size="10"/> 
                         <input type="button"  value="Get Details"
                                onclick="getEmployeeDetails()" />
-                        <span id="msg" style="color:red" /> </td>
+                        <span id="msg" style="color:red"></span> 
+                    </td>
                 </tr>
                 <tr>
                     <td>Employe Name : </td>
@@ -59,6 +58,5 @@
                     <td><input type="text" id="empsal" readonly size="30"/></td>
                 </tr>
             </table>
-        </form>
     </body>
 </html>
