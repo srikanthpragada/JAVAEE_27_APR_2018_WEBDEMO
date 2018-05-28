@@ -1,0 +1,45 @@
+<html>
+<head>
+<title>Employees By Job</title>
+<script src="../jquery-3.3.1.js"></script>
+<script>
+
+	function updateSalary() {
+		$.get("/webdemo/update",
+              { 
+			    empid: $("#empid").val(), 
+			    salary: $("#salary").val()
+              },
+              showStatus
+		);
+	}
+	
+	function showStatus(response) {
+		if (response == 0)
+			 $("#message").html("Updated Successfully!")
+		else
+			if (response == 1)
+				$("#message").html("Employee Not Found!")
+            else				
+            	$("#message").html("Sorry! Could not update salary!")
+	}
+</script>
+</head>
+<body>
+	<h2>Update Salary</h2>
+	Employee Id
+	<br/>
+	<input type="number" id="empid" />
+	<p/>
+	New Salary 
+	<br/>
+	<input type="number" id="salary" />
+	<p/>
+	<button onclick="updateSalary()">Update </button>
+	<p/>
+	<h3 id="message"></h3>
+
+
+</body>
+</html>
+

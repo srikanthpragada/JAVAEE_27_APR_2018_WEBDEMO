@@ -1,0 +1,79 @@
+<html>
+<head>
+<title>Employees By Job</title>
+<script src="../jquery-3.3.1.js"></script>
+<script>
+	// this is done when page is loaded  (document ready)
+	$(function() {
+		$.getJSON("jobs.jsp", {}, displayJobs);
+	});
+
+	function displayJobs(data) {
+		$.each(data, function(index, job) {
+			// add items to List box
+			$("#jobs")
+					.append(
+							"<option value='" + job.id + "'>" + job.title
+									+ "</option>");
+		});
+	}
+	
+	function getEmployees() {
+		// $("#employees").contents().remove(); // clear options
+		$.getJSON("employees.jsp", {
+			jobid : $("#jobs").val()
+		}, displayEmployees);
+	}
+	
+	function displayEmployees(employees) {
+		console.log(employees)
+		if (employees.length == 0 ) {
+	      $("#empTable").css("visibility","hidden")
+	      $("#message").text("Sorry! No Employees Found!")
+		  return;
+		}
+		
+		$("#empTable").css("visibility","visible")
+	    $("#message").text("");
+		
+		// clear table body
+		$("#rows").html("")
+		
+		$.each(employees,
+				function(index, emp) {
+                   row = "<tr><td>" + emp.fullname + "</td>" + 
+                    "<td>" + emp.department + "</td>" +
+                    "<td>" + emp.salary + "</td>"  +
+                    "<td>" + emp.hiredate + "</td></tr>"
+                   $("#rows").append(row);
+         		} // end of function
+		); // each
+	}
+</script>
+</head>
+<body>
+	<h2>Employees By Job</h2>
+	Select Job :
+	<select id="jobs""></select>
+	<button onclick="getEmployees()">Employees</button>
+	<p />
+    <h3 id="message"></h3>
+	<table  id="empTable" border="1" width="100%"  style="visibility:hidden">
+		<thead>
+			<tr>
+				<th>Fullname</th>
+				<th>Department</th>
+				<th>Salary</th>
+				<th>Hire Date</th>
+			</tr>
+		</thead>
+		<tbody id='rows'>
+
+		</tbody>
+
+	</table>
+	
+
+</body>
+</html>
+
