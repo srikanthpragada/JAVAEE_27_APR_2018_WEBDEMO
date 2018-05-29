@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title></title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+</head>
+<body>
+	<h2>Current Date & Time</h2>
+	<h1 id="output"></h1>
+
+	<script type="text/javascript">
+		output = document.getElementById("output");
+		var wsocket = new WebSocket("ws://localhost:8888/webdemo/time");
+		wsocket.onmessage = function(response) {
+			output.innerHTML = response.data;
+		}
+		
+	</script>
+</body>
+</html>
