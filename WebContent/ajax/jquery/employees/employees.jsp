@@ -1,5 +1,5 @@
 <%@page import="javax.json.*" contentType="application/json"%>
-<%
+<% 
     // Thread.sleep(5000);
 	javax.sql.rowset.CachedRowSet rs = new oracle.jdbc.rowset.OracleCachedRowSet();
 	rs.setUrl("jdbc:oracle:thin:@localhost:1521:XE");
