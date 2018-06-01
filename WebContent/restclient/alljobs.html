@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>List Of Jobs</title>
+<script src="../ajax/jquery/jquery-3.3.1.js"></script>
+<script>
+	$(function() {
+		$.getJSON("/webdemo/rest/jobs", {}, showJobs);
+	});
+
+	function showJobs(jobs) {
+		$.each(jobs, 
+			   function(idx,job) {
+			        $("#jobs").append("<li>" + job.title + "</li>");
+		       }
+		);
+		
+	}
+</script>
+</head>
+<body>
+	<h2>List Of Jobs</h2>
+	<ul id="jobs">
+	</ul>
+
+</body>
+</html>

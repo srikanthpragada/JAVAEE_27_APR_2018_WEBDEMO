@@ -1,15 +1,24 @@
 package rest;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+
 import javax.json.Json;
 import javax.json.JsonArrayBuilder;
 import javax.json.JsonObjectBuilder;
+import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
+import javax.ws.rs.NotFoundException;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
+import javax.ws.rs.ServerErrorException;
 
 @Path("jobs")
 public class JobsService {
 
+	// /jobs
 	@GET()
 	public String get() {
 		try {
@@ -35,9 +44,10 @@ public class JobsService {
 		}
 	}
 
+	// /jobs/id
 	@GET()
 	@Path("/{jobid}")
-	public String getJobs(@PathParam("jobid") String jobid) {
+	public String getJob(@PathParam("jobid") String jobid) {
 		try {
 			javax.sql.rowset.CachedRowSet rs = new oracle.jdbc.rowset.OracleCachedRowSet();
 			rs.setUrl("jdbc:oracle:thin:@localhost:1521:XE");
@@ -52,12 +62,32 @@ public class JobsService {
 				job.add("title", rs.getString("job_title"));
 				return job.build().toString();
 			} else {
-                // Send  404 status to client 
-				return null;
+				// Send 404 status to client
+				throw new NotFoundException();
 			}
 
-		} catch (Exception ex) {
-			return null;
+		} catch (SQLException ex) {
+			throw new ServerErrorException(ex.getMessage(), 500);
 		}
 	}
+
+	@DELETE
+	@Path("/{jobid}")
+	public void deleteJob(@PathParam("jobid") String jobid) {
+		try {
+			Class.forName("oracle.jdbc.driver.OracleDriver");
+			Connection con = 
+					DriverManager.getConnection
+					("jdbc:oracle:thin:@localhost:1521:xe", "hr", "hr"); 
+				PreparedStatement ps = con.prepareStatement
+						("delete from jobs where job_id = ?");
+				ps.setString(1,jobid);
+				int count = ps.executeUpdate();
+				if (count == 0)
+					throw new NotFoundException();
+		} 
+		catch (SQLException | ClassNotFoundException ex) {
+			throw new ServerErrorException(ex.getMessage(),500);
+		}
+	} // deleteJob() 
 }

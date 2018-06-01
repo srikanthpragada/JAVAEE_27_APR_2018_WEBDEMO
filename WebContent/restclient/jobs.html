@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Jobs Client</title>
+<script src="../ajax/jquery/jquery-3.3.1.js"></script>
+<script>
+function getTitle() {
+	  $.ajax( 
+    	 {
+           url : "/webdemo/rest/jobs/" + $("#jobid").val(),
+           method : "GET",
+           dataType : 'json',
+           error : 
+        	   function() {
+        	     $("#output").text("Sorry! Job Id Not Found!")
+               },
+           success:
+        	   function(result) {
+        	     $("#output").text(result.title)
+               }
+      	 }
+	 );
+}
+
+function deleteJob() {
+	  $.ajax( 
+  	  {
+         url : "/webdemo/rest/jobs/" + $("#jobid").val(),
+         method : "DELETE",
+         error : 
+      	   function() {
+      	     $("#output").text("Sorry! Could not delete job!")
+             },
+         success:
+      	   function() {
+      	        $("#output").text("Deleted Job Successfully!")
+           }
+    	 }
+	 );
+}
+
+
+</script>
+</head>
+<body>
+<h2>Job Details</h2>
+ID <input type="text" id="jobid"/>
+<button onclick="getTitle()">Get Title </button>
+<button onclick="deleteJob()">Delete Job</button>
+
+<h2 id="output"></h2>
+
+</body>
+</html>
