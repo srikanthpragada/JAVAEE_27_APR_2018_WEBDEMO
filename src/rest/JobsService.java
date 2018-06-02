@@ -9,15 +9,17 @@ import javax.json.Json;
 import javax.json.JsonArrayBuilder;
 import javax.json.JsonObjectBuilder;
 import javax.ws.rs.DELETE;
+import javax.ws.rs.FormParam;
 import javax.ws.rs.GET;
 import javax.ws.rs.NotFoundException;
+import javax.ws.rs.POST;
+import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.ServerErrorException;
 
 @Path("jobs")
 public class JobsService {
-
 	// /jobs
 	@GET()
 	public String get() {
@@ -85,6 +87,48 @@ public class JobsService {
 				int count = ps.executeUpdate();
 				if (count == 0)
 					throw new NotFoundException();
+		} 
+		catch (SQLException | ClassNotFoundException ex) {
+			throw new ServerErrorException(ex.getMessage(),500);
+		}
+	} // deleteJob()
+	
+	
+	@PUT
+	@Path("/{jobid}")
+	public void updateJob(@PathParam("jobid") String jobid,
+			  @FormParam("jobtitle") String jobtitle) {
+		try {
+			Class.forName("oracle.jdbc.driver.OracleDriver");
+			Connection con = 
+					DriverManager.getConnection
+					("jdbc:oracle:thin:@localhost:1521:xe", "hr", "hr"); 
+				PreparedStatement ps = con.prepareStatement
+						("update jobs set job_title = ? where job_id = ?");
+				ps.setString(1,jobtitle);
+				ps.setString(2,jobid);
+				int count = ps.executeUpdate();
+				if (count == 0)
+					throw new NotFoundException();
+		} 
+		catch (SQLException | ClassNotFoundException ex) {
+			throw new ServerErrorException(ex.getMessage(),500);
+		}
+	} // deleteJob()
+	
+	@POST
+	public void addJob(@FormParam("jobid") String jobid,
+			  @FormParam("jobtitle") String jobtitle) {
+		try {
+			Class.forName("oracle.jdbc.driver.OracleDriver");
+			Connection con = 
+					DriverManager.getConnection
+					("jdbc:oracle:thin:@localhost:1521:xe", "hr", "hr"); 
+				PreparedStatement ps = con.prepareStatement
+						("insert into jobs values(?,?,null,null)");
+				ps.setString(1,jobid);
+				ps.setString(2,jobtitle);
+				ps.executeUpdate();
 		} 
 		catch (SQLException | ClassNotFoundException ex) {
 			throw new ServerErrorException(ex.getMessage(),500);

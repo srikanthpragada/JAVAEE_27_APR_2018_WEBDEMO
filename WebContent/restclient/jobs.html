@@ -40,14 +40,53 @@ function deleteJob() {
 	 );
 }
 
+function updateJob() {
+	  $.ajax( 
+	  {
+       url    : "/webdemo/rest/jobs/" + $("#jobid").val(),
+       method : "PUT",
+       data   : { "jobtitle" : $("#jobtitle").val()},
+       error  : 
+    	   function() {
+    	     $("#output").text("Sorry! Could not update job!")
+           },
+       success:
+    	   function() {
+    	        $("#output").text("Updated Job Successfully!")
+         }
+  	 }
+	 );
+}
+
+
+function addJob() {
+	$.ajax( 
+	{
+     url    : "/webdemo/rest/jobs",
+     method : "POST",
+     data   : { "jobid" : $("#jobid").val(), "jobtitle" : $("#jobtitle").val()},
+     error  : 
+  	   function() {
+  	     $("#output").text("Sorry! Could not add job!")
+         },
+     success:
+  	   function() {
+  	        $("#output").text("Added Job Successfully!")
+       }
+	 }
+	 );
+}
 
 </script>
 </head>
 <body>
 <h2>Job Details</h2>
 ID <input type="text" id="jobid"/>
+Title <input type="text" id="jobtitle"/>
 <button onclick="getTitle()">Get Title </button>
 <button onclick="deleteJob()">Delete Job</button>
+<button onclick="updateJob()">Update Job</button>
+<button onclick="addJob()">Add Job</button>
 
 <h2 id="output"></h2>
 

@@ -7,7 +7,19 @@
 	<welcome-file-list>
 		<welcome-file>index.html</welcome-file>
 	</welcome-file-list>
-	
+	<!-- JSF -->
+	<servlet>
+		<servlet-name>jsf</servlet-name>
+		<servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>jsf</servlet-name>
+		<url-pattern>/faces/*</url-pattern>
+	</servlet-mapping>
+
+
 	<!-- Jersey Entries -->
 	<servlet>
 		<servlet-name>Jersey</servlet-name>
@@ -24,22 +36,9 @@
 	</servlet-mapping>
 
 	<!-- end of Jersey -->
-	
-   <!-- Metro 
-	<listener>
-		<listener-class>com.sun.xml.ws.transport.http.servlet.WSServletContextListener</listener-class>
-	</listener>
 
-	<servlet>
-		<servlet-name>metro-servlet</servlet-name>
-		<servlet-class>com.sun.xml.ws.transport.http.servlet.WSServlet</servlet-class>
-		<load-on-startup>1</load-on-startup>
-	</servlet>
-
-	<servlet-mapping>
-		<servlet-name>metro-servlet</servlet-name>
-		<url-pattern>/jaxws/*</url-pattern>
-	</servlet-mapping>
-  
- -->
+	<!-- Metro <listener> <listener-class>com.sun.xml.ws.transport.http.servlet.WSServletContextListener</listener-class> 
+		</listener> <servlet> <servlet-name>metro-servlet</servlet-name> <servlet-class>com.sun.xml.ws.transport.http.servlet.WSServlet</servlet-class> 
+		<load-on-startup>1</load-on-startup> </servlet> <servlet-mapping> <servlet-name>metro-servlet</servlet-name> 
+		<url-pattern>/jaxws/*</url-pattern> </servlet-mapping> -->
 </web-app>
