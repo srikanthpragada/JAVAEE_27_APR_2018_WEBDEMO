@@ -1,0 +1,22 @@
+<html  xmlns:h="http://java.sun.com/jsf/html"
+       xmlns:p="http://xmlns.jcp.org/jsf/passthrough"
+       xmlns:f="http://java.sun.com/jsf/core">
+<body>
+   <h3>Login</h3>
+   <h:form id="loginForm">
+    Username <br/>
+    <h:inputText id="username" p:required="required" p:placeholder="username"
+         value="#{loginBean.username}" ></h:inputText>
+    <p/>
+     Password <br/>
+    <h:inputSecret id="password" p:required="required" autocomplete="off" value="#{loginBean.password}"></h:inputSecret>
+    <p/>
+    <h:commandButton value="Login"  
+             action="#{loginBean.login}" ></h:commandButton>
+   </h:form>
+   
+   <h4>#{loginBean.message}</h4>
+    
+</body>
+ 
+</html>
