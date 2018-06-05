@@ -1,0 +1,12 @@
+<html  xmlns:h="http://java.sun.com/jsf/html"
+ xmlns:ui="http://java.sun.com/jsf/facelets"
+ xmlns:f="http://java.sun.com/jsf/core">
+
+<body>
+    <h1>Jobs</h1>
+    <ui:repeat var="job" value="#{jobsBean.allJobs}">
+        #{job.id} - #{job.title} <br/>
+    </ui:repeat>
+</body>
+ 
+</html>

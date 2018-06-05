@@ -1,0 +1,23 @@
+<html  xmlns:h="http://java.sun.com/jsf/html"
+ xmlns:f="http://java.sun.com/jsf/core">
+ <style>
+   .colhead { color : white; background-color : navy}
+   .centercol { text-align: center}
+   .rightcol { text-align: right}
+ </style>
+<body>
+    <h1>Jobs</h1>
+    <h:dataTable  value="#{jobsBean.jobs}"  var="job"
+         headerClass="colhead" columnClasses="centercol,rightcol" >
+          <h:column>
+            <f:facet name="header">Job Title</f:facet>
+            #{job.job_title}
+          </h:column>
+          <h:column>
+            <f:facet name="header">Min Salary</f:facet>
+            #{job.min_salary}
+          </h:column>
+    </h:dataTable>
+</body>
+ 
+</html>

@@ -5,7 +5,7 @@ import javax.faces.event.ActionEvent;
 
 @ManagedBean
 public class DiscountBean {
-	private double amount, rate, discount;
+	private double amount, rate = 15, discount;
 
 	public double getAmount() {
 		return amount;

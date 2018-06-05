@@ -7,7 +7,10 @@
     <h:inputText id="amount" value="#{discountBean.amount}"></h:inputText>
     <p/>
      Discount Rate <br/>
-    <h:inputText id="rate" value="#{discountBean.rate}"></h:inputText>
+    <h:inputText id="rate" value="#{discountBean.rate}">
+        <f:validateLongRange  minimum="5" maximum="50"></f:validateLongRange>
+    </h:inputText>
+    <h:message for="rate"></h:message>
     <p/>
     <h:commandButton value="Calculate"  
              actionListener="#{discountBean.calculate}" ></h:commandButton>
