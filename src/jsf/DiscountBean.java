@@ -33,6 +33,8 @@ public class DiscountBean {
 	
 	
 	public void calculate(ActionEvent evt) {
+		System.out.println(amount);
+		System.out.println(rate);
 		discount = amount * rate / 100; 
 	}
 	

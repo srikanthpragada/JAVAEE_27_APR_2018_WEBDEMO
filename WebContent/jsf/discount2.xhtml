@@ -1,0 +1,27 @@
+<html  xmlns:h="http://java.sun.com/jsf/html"
+ xmlns:f="http://java.sun.com/jsf/core">
+<h:head>
+</h:head>
+<body>
+   <h3>Discount Calculation with Ajax</h3>
+   <h:form id="discountForm">
+    Amount <br/>
+    <h:inputText id="amount" value="#{discountBean.amount}"></h:inputText>
+    <p/>
+     Discount Rate <br/>
+    <h:inputText id="rate" value="#{discountBean.rate}">
+        <f:validateLongRange  minimum="5" maximum="50"></f:validateLongRange>
+    </h:inputText>
+    <h:message for="rate"></h:message>
+    <p/>
+    <h:commandButton value="Calculate"  
+             actionListener="#{discountBean.calculate}">
+            <f:ajax execute="amount rate" render="discount"></f:ajax>  
+    </h:commandButton>
+   </h:form>
+   
+   <h:outputText id="discount"   value ="#{discountBean.discount}" />
+    
+</body>
+ 
+</html>

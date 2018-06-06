@@ -1,0 +1,40 @@
+<html xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+<style>
+.colhead {
+	color: white;
+	background-color: navy
+}
+
+.centercol {
+	text-align: center
+}
+
+.rightcol {
+	text-align: right
+}
+</style>
+<body>
+	<h1>Employees By Job</h1>
+	<h:form>
+    Select Job :
+        <h:selectOneMenu id="job" value="#{jobsBean.jobid}">
+			<f:selectItems value="#{jobsBean.titles}"></f:selectItems>
+		</h:selectOneMenu>
+		<h:commandButton value="Go"
+			actionListener="#{jobsBean.processSelection}">
+		</h:commandButton>
+		<p/>
+		<h:dataTable  value="#{jobsBean.employees}" var="emp">
+		   <h:column>
+		      #{emp.first_name}
+		   </h:column>
+		   
+		   <h:column>
+		      #{emp.salary}
+		   </h:column>
+		</h:dataTable>
+	</h:form>
+</body>
+
+</html>

@@ -1,12 +1,17 @@
-<html  xmlns:h="http://java.sun.com/jsf/html"
- xmlns:ui="http://java.sun.com/jsf/facelets"
- xmlns:f="http://java.sun.com/jsf/core">
+<html xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core">
 
 <body>
-    <h1>Jobs</h1>
-    <ui:repeat var="job" value="#{jobsBean.allJobs}">
-        #{job.id} - #{job.title} <br/>
-    </ui:repeat>
+	<h1>Jobs</h1>
+
+	<select>
+		<ui:repeat var="job" value="#{jobsBean.allJobs}">
+			<option value="#{job.id}">#{job.title}</option>
+		</ui:repeat>
+	</select>
+
+
 </body>
- 
+
 </html>
